@@ -21,7 +21,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36'
 }
 
-# Function to scrape the data from a website
+# function to scrape the data from a website
 def scrape_website(url, xpath_expr):
     print(f'Getting response from {url}\n')
     response = requests.get(url, headers = headers)
@@ -34,7 +34,7 @@ def scrape_website(url, xpath_expr):
         product_data = []
         for title, price in zip(titles, prices):
             title_text = title.strip()
-            price_text = price.strip().replace(',', '').replace('$', '').replace('current price Now ','').replace('current price ','')  # Assuming prices are in dollars
+            price_text = price.strip().replace(',', '').replace('$', '').replace('current price Now ','').replace('current price ','')  # removing characters and special characters
             product_data.append({
                 'title': title_text,
                 'price': float(price_text),
@@ -46,7 +46,7 @@ def scrape_website(url, xpath_expr):
         exit()
 
 
-# Scrape data from both websites
+# scrape data from both websites
 website1_data = scrape_website(website1_url, xpath_data['website1'])
 website2_data = scrape_website(website2_url, xpath_data['website2'])
 
